@@ -1,0 +1,106 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto&display=swap);
+
+:root{
+	--rg-gray: rgb(207, 204, 207);
+}
+#rgba-widget{
+	position:fixed;
+	background:white;
+	box-shadow:0 0 8px rgba(0,0,0,.5);
+	padding:20px;
+	border-radius:7px;
+	cursor:move;
+	z-index:999;
+	left:180px;
+	top:100px;
+}
+#rgba-widget *:not(input){
+	cursor:default;
+}
+#rgba-widget input{
+	display:block;
+}
+#rgba-widget input[type=text]{
+	margin-bottom:6px;
+	line-height:1.5;
+	padding:5px;
+	padding-left:8px;
+	border-radius:5px;
+	outline:none;
+	border:2px solid var(--rg-gray);
+	font-size:.85em;
+	max-width:100%;
+	color:gray;
+	font-family:Roboto;
+}
+#rgba-widget input[type=text]:focus{
+	border-color:rgba(0,53,185,1);
+}
+#rgba-widget input[type=range]{
+	cursor:pointer;
+	width:100%;
+	height:100%;
+	margin:0;
+	-webkit-appearance: none;
+}
+#rgba-widget input[type=range]:focus{
+	outline:none;
+}
+#rgba-widget input[type=range]::-webkit-slider-runnable-track{
+	width: 100%;
+	height: 1px;
+	cursor: pointer;
+	background: var(--rg-gray);
+}
+#rgba-widget input[type=range]::-webkit-slider-thumb{
+	-webkit-appearance: none;
+	height: 24px;
+	width: 10px;
+	border-radius: 20px;
+	background: var(--rg-gray);
+	margin-top:-12px;
+}
+#rgba-widget input[type=range]::-moz-range-track{
+	width: 100%;
+	height: 1px;
+	cursor: pointer;
+	background: var(--rg-gray);
+}
+#rgba-widget input[type=range]::-moz-range-thumb{
+	-webkit-appearance: none;
+	height: 24px;
+	width: 10px;
+	border-radius: 20px;
+	background: var(--rg-gray);
+	margin-top:-12px;
+}
+#rgba-widget input[type=range]::-ms-track{
+	width: 100%;
+	height: 1px;
+	cursor: pointer;
+	background: var(--rg-gray);
+}
+#rgba-widget input[type=range]::-ms-thumb{
+	-webkit-appearance: none;
+	height: 24px;
+	width: 10px;
+	border-radius: 20px;
+	background: var(--rg-gray);
+	margin-top:-12px;
+}
+#rgba-widget output{
+	display:block;
+	text-align:center;
+	margin:12px 0 10px;
+}
+.rgba-setter{
+	--bck-width: 4px;
+	background: linear-gradient(to right, var(--color) var(--bck-width), transparent 0);
+	height:40px;
+	padding-left:10px;
+	margin-bottom:5px;
+}
+.rgba-setter.rgba-alpha{
+	margin-bottom:0;
+	background: no-repeat linear-gradient(to bottom, transparent, black) 0 0/ var(--bck-width) 100%;
+}
