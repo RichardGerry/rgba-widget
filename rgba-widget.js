@@ -1,8 +1,8 @@
 (function () {
 	
-	let rgbaElements
+	let rgbaSetterElements
 	let rgbaSelectorElements = []
-	let rgbaElementProperty
+	let rgbaSelectorElementsProp
 	
 	function $(selector, context){
 		context = context || document
@@ -13,15 +13,13 @@
 		return [...context.querySelectorAll(selector)]
 	}
 	function onRangeInput(evt){
-		let elem = $("span", evt.target.parentNode)
-		elem ? elem.textContent = evt.target.value : null
 		setSelectorElementsToRGBA()
 	}
 	function setSelectorElementsToRGBA(){
-		rgbaSelectorElements.forEach(elem=> elem.style[rgbaElementProperty] = getRGBAStyle())
+		rgbaSelectorElements.forEach(elem=> elem.style[rgbaSelectorElementsProp] = getRGBAStyle())
 	}
 	function getRGBAStyle(){
-		let colors = rgbaElements.map(elem=>$("input[type='range']",elem)).map(elem=> elem.value)
+		let colors = rgbaSetterElements.map(elem=>$("input[type='range']",elem)).map(elem=> elem.value)
 		return "rgba(" + colors.join(",") + ")"
 	}
 	function setRGBAFormOutput(evt){
@@ -32,9 +30,9 @@
 	}
 	function onInputSelectorProperty(evt){
 		let inputProperty = evt.target.value
-		rgbaElementProperty = null
+		rgbaSelectorElementsProp = null
 		if(propertyExists(inputProperty) && propertyAcceptsRGBA(inputProperty)){
-			rgbaElementProperty = inputProperty
+			rgbaSelectorElementsProp = inputProperty
 		}
 	}
 	function propertyExists(property){
@@ -101,8 +99,8 @@
 	}
 	document.addEventListener("DOMContentLoaded", ()=> {
 		createRGBAWidget()
-		rgbaElements = $$(".rgba-setter")
-		rgbaElements.forEach(elem=> $("input[type='range']", elem).addEventListener("input", onRangeInput))
+		rgbaSetterElements = $$(".rgba-setter")
+		rgbaSetterElements.forEach(elem=> $("input[type='range']", elem).addEventListener("input", onRangeInput))
 		$("#selector-elem").addEventListener("input",onInputSelector)
 		$("#selector-elem-prop").addEventListener("input",onInputSelectorProperty)
 		$("#rgba-widget").addEventListener("input", setRGBAFormOutput)
@@ -110,17 +108,17 @@
 			if(evt.target.id === "rgba-widget"){
 				evt.preventDefault()
 				let self = this
-				var offsetX = 0, offsetY = 0, origX = 0, origY = 0;
-				origX = evt.clientX;
-				origY = evt.clientY;
+				var offsetX = 0, offsetY = 0, origX = 0, origY = 0
+				origX = evt.clientX
+				origY = evt.clientY
 				document.onmousemove = function(evt){
-					evt.preventDefault();
-					offsetX = origX - evt.pageX;
-					offsetY = origY - evt.pageY;
-					origX = evt.pageX;
-					origY = evt.pageY;
-					self.style.left = (self.offsetLeft - offsetX) + "px";
-					self.style.top = (self.offsetTop - offsetY) + "px";
+					evt.preventDefault()
+					offsetX = origX - evt.pageX
+					offsetY = origY - evt.pageY
+					origX = evt.pageX
+					origY = evt.pageY
+					self.style.left = (self.offsetLeft - offsetX) + "px"
+					self.style.top = (self.offsetTop - offsetY) + "px"
 				}
 				document.onmouseup = function(){
 					document.onmousemove = document.onmouseup = null
