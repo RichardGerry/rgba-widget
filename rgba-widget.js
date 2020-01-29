@@ -61,6 +61,7 @@
 		input.value = "1"
 		let div = document.createElement("div")
 		div.className = "rgba-setter rgba-alpha"
+		div.style.setProperty("--color","gray")
 		div.appendChild(input)
 		parent.appendChild(div)
 	}
