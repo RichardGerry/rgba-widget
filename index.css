@@ -1,0 +1,197 @@
+@import url(https://fonts.googleapis.com/css?family=Cabin|Josefin+Sans&display=swap);
+
+:root{
+	--odd-background: rgba(74,110,175,0.40);
+	--even-background: rgba(137, 230, 65, 0.34);
+	--header-background: rgba(133,35,32,1);
+}
+
+body{
+	margin:0px;
+}
+
+header{
+	background: var(--header-background);
+	padding: 1.2em 1em .5em 2em;
+	color:white;
+	box-shadow: 0 0 10px 2px rgba(0,0,0,.7);
+}
+
+h1{
+	margin:0px;
+	font-size: 3em;
+	margin-bottom:12px;
+	font-family: 'Josefin Sans', Bahnschrift SemiBold;
+}
+
+nav{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+	padding: .75em;
+	max-width: 70vw;
+	margin:auto;
+	border-radius:15px;
+}
+	nav a{
+		padding: .5em .75em;
+		color: currentColor;
+		cursor: pointer;
+		text-shadow: 0 -1px 1px rgba(0,0,0,.7);
+		font-size: 125%;
+		border-radius: 10px;
+		font-weight: 600;
+		transition:.25s background;
+	}
+		
+		nav a:hover{
+			background: white;
+			color: var(--header-background);
+			text-shadow:none;
+		}
+
+a{
+	text-decoration:none;
+}
+
+h2{
+	margin-top:0px;
+	text-shadow: 0 1px 1px hsla(0,0%,100%,.5);
+}
+
+#features ul, #demo ul{
+	list-style: none;
+}
+
+	#features ul li, #demo ul li{
+		position:relative;
+	}
+	
+		#features ul li::before, #demo ul li::before{
+			content:"\a0";
+			position: absolute;
+			left: -22px; top:6px;
+			width: .4em; height:.4em;
+			background: var(--header-background);
+			border-radius: 50%;
+		}
+
+#use ol{
+	list-style:none;
+}
+
+	#use ol li{
+		counter-increment: cnt;
+		position:relative;
+	}
+		
+		#use li:before{
+			position: absolute;
+			left:-30px; top:-3px;
+			content: counter(cnt);
+			font-size: 80%;
+			background: var(--header-background);
+			color: white;
+			font-weight: bold;
+			padding: .2em .55em;
+			border-radius:50%;
+			border-bottom-right-radius:0;
+		}
+
+section{
+	padding:1.5em calc(50% - calc(85vw / 2));
+}
+
+	section h2{
+		color: var(--header-background);
+	}
+	
+	section li, section p{
+		font-family: Cabin;
+	}
+
+	section:nth-child(odd){
+		background: var(--odd-background);
+	}
+	
+	section:nth-child(even){
+		background: var(--even-background);
+	}
+	
+	section code{
+		font-family: monospace;
+	}
+
+	section strong{
+		display:block;
+		margin-bottom: 5px;
+	}
+	
+	section li{
+		margin-bottom: 10px;
+	}
+	
+		section li pre{
+			font:inherit;
+			tab-size:4;
+			margin:0;
+			font-size:90%;
+		}
+
+nav a, h2{
+	font-family: Bookman Old Style;
+}
+
+footer{
+	padding:20px;
+	margin:auto;
+	text-align:center;
+	background: var(--header-background);
+	color: white;
+	font-size: 125%;
+}
+
+	footer a{
+		color: currentColor;
+		text-decoration: underline;
+		font-family: Cabin;
+	}
+
+@supports (clip-path: polygon(0 50%, 50% 50%)){
+	
+	#arrow{
+		width:125px; height:100px;
+		position: fixed;
+		right: 6vw;
+		filter: drop-shadow(0 0 4px rgba(0,0,0,.4));
+		animation: 
+			dropin 1s cubic-bezier(.82,.05,.49,1),
+			.4s 1.1s 8 pointing linear alternate,
+			remove-arrow .2s 10s linear forwards;
+	}
+	#arrow::before{
+		content:"";
+		position:absolute;
+		top:25px; left:0; right:0; bottom:0;
+		clip-path: polygon(50% 0, 50% 65%, 60% 65%, 45% 85%, 30% 65%, 40% 65%, 40% 0);
+		background: linear-gradient(hsla(0,0%,100%,.7), hsla(0,0%,100%,.1)) lime;
+	}
+
+	@keyframes remove-arrow{
+		to{
+			transform:scale(0);
+		}
+	}
+
+	@keyframes pointing{
+		to{
+			transform: translateY(-25%);
+		}
+	}
+
+	@keyframes dropin{
+		from{
+			transform: translateY(-100%);
+		}
+	}
+}
