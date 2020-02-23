@@ -10,7 +10,10 @@
 	}
 	function $$(selector, context){
 		context = context || document
-		return [...context.querySelectorAll(selector)]
+		try{
+			return [...context.querySelectorAll(selector)]
+		}
+		catch{}
 	}
 	function onRangeInput(evt){
 		setSelectorElementsToRGBA()
@@ -44,7 +47,9 @@
 		return !!dummy.style[property]
 	}
 	function createRGBAWidget(){
-		let parentForm = $("#rgba-widget")
+		let parentForm = document.createElement("form")
+		parentForm.id = "rgba-widget"
+		document.body.appendChild(parentForm)
 		createSelectorTextInputs(parentForm)
 		createRGBAOutput(parentForm)
 		createColorSetters(parentForm)
@@ -97,11 +102,12 @@
 		selectElemProp.placeholder = "Property"
 		parent.appendChild(selectElemProp)
 	}
-	document.addEventListener("DOMContentLoaded", ()=> {
+	function init(){
 		createRGBAWidget()
 		rgbaSetterElements = $$(".rgba-setter")
 		rgbaSetterElements.forEach(elem=> $("input[type='range']", elem).addEventListener("input", onRangeInput))
 		$("#selector-elem").addEventListener("input",onInputSelector)
+		$("#selector-elem").focus()
 		$("#selector-elem-prop").addEventListener("input",onInputSelectorProperty)
 		$("#rgba-widget").addEventListener("input", setRGBAFormOutput)
 		$("#rgba-widget").onmousedown = function(evt){
@@ -113,10 +119,10 @@
 				origY = evt.clientY
 				document.onmousemove = function(evt){
 					evt.preventDefault()
-					offsetX = origX - evt.pageX
-					offsetY = origY - evt.pageY
-					origX = evt.pageX
-					origY = evt.pageY
+					offsetX = origX - evt.clientX
+					offsetY = origY - evt.clientY
+					origX = evt.clientX
+					origY = evt.clientY
 					self.style.left = (self.offsetLeft - offsetX) + "px"
 					self.style.top = (self.offsetTop - offsetY) + "px"
 				}
@@ -125,5 +131,6 @@
 				}
 			}
 		}
-	})
+	}
+	document.addEventListener("DOMContentLoaded", init)
 }());
