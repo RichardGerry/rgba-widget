@@ -6,7 +6,7 @@
 #rgba-widget{
 	position:fixed;
 	background:white;
-	box-shadow:0 0 8px rgba(0,0,0,.5);
+	box-shadow:0 0 .6em rgba(0,0,0,.5);
 	padding:20px;
 	border-radius:7px;
 	cursor:move;
@@ -28,14 +28,15 @@
 	padding-left:8px;
 	border-radius:5px;
 	outline:none;
-	border:2px solid var(--rg-gray);
+	border:1px solid var(--rg-gray);
 	font-size:.85em;
 	max-width:100%;
 	color:gray;
 	font-family:Roboto;
+	box-shadow: .1em .1em .4em rgba(0,0,0,.1) inset;
 }
 #rgba-widget input[type=text]:focus{
-	border-color:rgba(0,53,185,1);
+	box-shadow: 0 0 .5em  rgba(0,53,255,1);
 }
 #rgba-widget input[type=range]{
 	cursor:pointer;
