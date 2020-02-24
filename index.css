@@ -1,8 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Cabin|Josefin+Sans&display=swap);
 
 :root{
-	--odd-background: rgba(74,110,175,0.40);
-	--even-background: rgba(137, 230, 65, 0.34);
 	--header-background: rgba(133,35,32,1);
 }
 
@@ -104,6 +102,7 @@ h2{
 section{
 	padding:1.5em calc(50% - 43vw);
 	flex:1;
+	background: rgba(137, 230, 65, 0.34);
 }
 
 	section h2{
@@ -113,13 +112,9 @@ section{
 	section li, section p{
 		font-family: Cabin;
 	}
-
-	section:nth-child(odd){
-		background: var(--odd-background);
-	}
 	
 	section:nth-child(even){
-		background: var(--even-background);
+		background: rgba(74,110,175,0.40);
 	}
 	
 	section code{
