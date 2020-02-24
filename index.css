@@ -101,12 +101,9 @@ h2{
 			border-bottom-right-radius:0;
 		}
 
-main{
-	flex: 1;
-}
-
 section{
 	padding:1.5em calc(50% - 43vw);
+	flex:1;
 }
 
 	section h2{
