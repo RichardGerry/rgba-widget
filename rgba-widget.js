@@ -13,7 +13,7 @@
 		try{
 			return [...context.querySelectorAll(selector)]
 		}
-		catch{}
+		catch(err){}
 	}
 	function onRangeInput(evt){
 		setSelectorElementsToRGBA()
