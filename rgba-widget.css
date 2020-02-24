@@ -102,5 +102,5 @@
 }
 .rgba-setter.rgba-alpha{
 	margin-bottom:0;
-	background: no-repeat linear-gradient(to bottom, transparent, black) 0 0/ var(--bck-width) 100%;
+	background: linear-gradient(to bottom, transparent, black) 0 0/ var(--bck-width) 100% no-repeat;
 }
